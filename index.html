@@ -58,6 +58,18 @@
     },
     body: JSON.stringify({ ip: ip }),
 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+    fetch('/capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            screen_resolution: `${window.screen.width}x${window.screen.height}`,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            plugins: Array.from(navigator.plugins).map(p => p.name)
+        })
+    });
+});
     </script>
 </body>
 </html>
